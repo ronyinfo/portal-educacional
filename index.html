@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <title>Plataforma de Capacitação</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<header>
+    <h1>Plataforma de Capacitação Educacional</h1>
+    <p>Secretaria de Educação de Presidente Kennedy</p>
+    <button class="login-btn" onclick="abrirPopup()">LOGIN</button>
+</header>
+
+<section>
+    <div class="bem-vindo-box">
+        <h2>Bem-vindo</h2>
+        <p>Ambiente digital de formação continuada para profissionais da educação.</p>
+    </div>
+
+    <div class="cursos-grid" id="lista-cursos"></div>
+</section>
+
+<footer>
+    <p>Versão 1.0 - Projeto de Estágio</p>
+</footer>
+
+<div id="popup" class="popup" onclick="fecharPopupClickFora(event)">
+    <div class="popup-box">
+        <div class="popup-header" id="popup-titulo">Acessar</div>
+        
+        <div class="popup-body">
+            
+            <div id="form-login">
+                <div class="input-group">
+                    <input id="login-id" type="text" placeholder="E-mail ou CPF*">
+                </div>
+                <div class="input-group">
+                    <input id="senha" type="password" placeholder="Senha*">
+                    <span class="toggle-password" onclick="toggleSenha('senha')">&#128065;</span>
+                </div>
+                
+                <a href="#" class="forgot-pass" onclick="esqueciSenha()">Esqueci minha senha</a>
+                
+                <button class="btn-entrar" onclick="login()">Entrar</button>
+                <p id="msg"></p>
+                
+                <div class="register-section">
+                    Ainda não é cadastrado? <a href="#" onclick="mostrarCadastro()">Cadastre-se</a>
+                </div>
+            </div>
+
+            <div id="form-cadastro" style="display: none;">
+                <div class="input-group">
+                    <input id="cad-login-id" type="text" placeholder="E-mail ou CPF*">
+                </div>
+                <div class="input-group">
+                    <input id="cad-senha" type="password" placeholder="Crie uma senha*">
+                    <span class="toggle-password" onclick="toggleSenha('cad-senha')">&#128065;</span>
+                </div>
+                
+                <button class="btn-entrar" onclick="cadastrar()">Cadastrar</button>
+                <p id="msg-cadastro"></p>
+                
+                <div class="register-section">
+                    Já possui conta? <a href="#" onclick="mostrarLogin()">Faça Login</a>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+<script src="js/script.js"></script>
+</body>
+</html>
