@@ -2,25 +2,54 @@
 <html lang="pt-br">
 <head>
     <meta charset="UTF-8">
-    <title>Admin - Plataforma de Capacitação</title>
+    <title>Administração - Cursos</title>
     <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
 
 <header>
-    <h1>Painel Administrativo</h1>
-    <p>Cadastro de Cursos</p>
-    <button class="login-btn" onclick="window.location.href='index.html'">VER SITE</button>
+    <h1>Plataforma de Capacitação Educacional</h1>
+    <p>Painel Administrativo</p>
+    <button class="login-btn" onclick="window.location.href='index.html'">Sair</button>
 </header>
 
-<section>
-    <div class="form-admin">
+<section style="max-width: 900px; margin: 40px auto; padding: 0 20px;">
+    <div class="form-admin" style="background: white; padding: 25px; border-radius: 8px; box-shadow: 0 2px 4px rgba(0,0,0,0.05);">
         <h2>Cadastrar Novo Curso</h2>
-        <input type="text" id="titulo" placeholder="Título do Curso">
-        <input type="text" id="imagem" placeholder="URL da Imagem (Ex: https://link-da-imagem.com/img.jpg)">
-        <button class="btn-salvar" onclick="salvarCurso()">Salvar Curso</button>
+        <input id="titulo" type="text" placeholder="Título do Curso" style="width:100%; padding:10px; margin-bottom:12px; border:1px solid #ccc; border-radius:4px;">
+        <input id="imagem" type="text" placeholder="URL da Imagem" style="width:100%; padding:10px; margin-bottom:12px; border:1px solid #ccc; border-radius:4px;">
+        <input id="box-carga-horaria" type="text" placeholder="Carga Horária (Ex: 40h)" style="width:100%; padding:10px; margin-bottom:12px; border:1px solid #ccc; border-radius:4px;">
+        <input id="data-inicio" type="text" placeholder="Data de Início (Ex: 06/08/2026)" style="width:100%; padding:10px; margin-bottom:12px; border:1px solid #ccc; border-radius:4px;">
+        <input id="data-fim" type="text" placeholder="Data de Término (Ex: 16/08/2026)" style="width:100%; padding:10px; margin-bottom:12px; border:1px solid #ccc; border-radius:4px;">
+        <input id="link-conteudo" type="text" placeholder="Link do Conteúdo / Slides (Opcional - Pode inserir depois)" style="width:100%; padding:10px; margin-bottom:20px; border:1px solid #ccc; border-radius:4px;">
+        
+        <div style="margin-bottom: 20px; text-align: left;">
+            <label style="font-weight: bold; font-size: 14px; display: block; margin-bottom: 8px; color: #333;">Público-Alvo do Curso (Quem pode visualizar):</label>
+            <div id="funcoes-permitidas" style="display: flex; gap: 15px; font-size: 14px; color: #555; flex-wrap: wrap;">
+                <label><input type="checkbox" value="Professor"> Professor</label>
+                <label><input type="checkbox" value="Pedagogo"> Pedagogo</label>
+                <label><input type="checkbox" value="Diretor"> Diretor</label>
+                <label><input type="checkbox" value="Cuidador"> Cuidador</label>
+            </div>
+        </div>
+
+        <button class="btn-salvar" onclick="salvarCurso()" style="background:#28a745; color:white; border:none; padding:12px 20px; font-size:16px; font-weight:bold; border-radius:4px; cursor:pointer;">Salvar Curso</button>
+    </div>
+
+    <div class="form-admin" style="margin-top: 40px; background: white; padding: 25px; border-radius: 8px; box-shadow: 0 2px 4px rgba(0,0,0,0.05);">
+        <h2>Gerenciar Cursos Existentes</h2>
+        <div id="lista-cursos-admin"></div>
     </div>
 </section>
+
+<div id="modal-qrcode" style="display:none; position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.6); z-index:1000; justify-content:center; align-items:center;">
+    <div style="background:white; padding: 30px; border-radius:8px; text-align:center; max-width:400px; width:90%;">
+        <h3 id="qr-titulo" style="margin-top:0; color:#333;">QR Code de Presença</h3>
+        <div id="qr-container" style="margin: 20px 0; display:flex; justify-content:center;"></div>
+        <p style="font-size:13px; color:#666;">Projete ou mostre este código aos alunos ao final da aula presencial para validar a presença deles na planilha.</p>
+        <button onclick="fecharModalQr()" style="background:#007bff; color:white; border:none; padding:10px 20px; border-radius:4px; cursor:pointer; font-weight:bold;">Fechar</button>
+    </div>
+</div>
 
 <script src="js/script.js"></script>
 </body>

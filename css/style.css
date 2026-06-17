@@ -7,14 +7,19 @@ header p { margin: 0; font-size: 16px; color: #d1d5db; }
 section { max-width: 1200px; margin: 40px auto; padding: 0 20px; }
 .bem-vindo-box { background: white; padding: 30px; border-radius: 12px; box-shadow: 0 2px 8px rgba(0,0,0,0.05); margin-bottom: 30px; }
 .bem-vindo-box h2 { margin-top: 0; color: #333; }
-.cursos-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px; }
-.curso-card { background: white; border-radius: 8px; overflow: hidden; box-shadow: 0 2px 6px rgba(0,0,0,0.1); }
-.curso-img { width: 100%; height: 180px; object-fit: cover; background-color: #ddd; }
-.curso-info { padding: 15px; }
-.curso-info h3 { margin: 0; font-size: 18px; color: #333; }
+
+.cursos-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 20px; }
+.curso-card { background: white; border-radius: 8px; overflow: hidden; box-shadow: 0 2px 6px rgba(0,0,0,0.1); display: flex; flex-direction: column; max-width: 350px; }
+.curso-img { width: 100%; height: 180px; object-fit: cover; background-color: #ddd; display: block; }
+.curso-info { padding: 15px; display: flex; flex-direction: column; flex-grow: 1; }
+.curso-info h3 { margin: 0 0 10px 0; font-size: 18px; color: #333; }
+.curso-info p { margin: 5px 0; font-size: 14px; color: #555; }
+.btn-acessar-curso { display: block; background: #0078d4; color: white; text-align: center; padding: 10px; text-decoration: none; border-radius: 4px; margin-top: auto; font-weight: bold; }
+.btn-acessar-curso:hover { background: #005a9e; }
+
 footer { text-align: center; padding: 20px; color: #666; margin-top: 40px; }
 
-/* POPUP LOGIN E CADASTRO - AJUSTADO PARA O LAYOUT DA IMAGEM */
+/* POPUP LOGIN E CADASTRO */
 .popup { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.5); z-index: 1000; }
 .popup-box { background: white; width: 100%; max-width: 420px; margin: 8% auto; border-radius: 8px; overflow: hidden; font-family: Arial, sans-serif; }
 .popup-header { background: #0078d4; color: white; text-align: center; padding: 25px 20px; font-size: 26px; font-weight: normal; }

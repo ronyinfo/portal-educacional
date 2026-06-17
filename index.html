@@ -2,72 +2,75 @@
 <html lang="pt-br">
 <head>
     <meta charset="UTF-8">
-    <title>Plataforma de Capacitação</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Plataforma de Capacitação Educacional</title>
     <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
 
-<header>
-    <h1>Plataforma de Capacitação Educacional</h1>
-    <p>Secretaria de Educação de Presidente Kennedy</p>
-    <button class="login-btn" onclick="abrirPopup()">LOGIN</button>
+<header style="background: #1a2536 !important; width: 100% !important; margin: 0 !important; padding: 20px 0 !important; display: block !important;">
+    <div style="display: flex !important; justify-content: space-between !important; align-items: center !important; max-width: 1200px !important; width: 100% !important; margin: 0 auto !important; padding: 0 20px !important; box-sizing: border-box !important;">
+        <div style="text-align: left !important;">
+            <h1 style="color: white !important; margin: 0 !important; font-size: 24px !important; font-weight: bold !important;">Plataforma de Capacitação Educacional</h1>
+            <p style="color: #cbd5e1 !important; margin: 5px 0 0 0 !important; font-size: 14px !important;">Ambiente digital de formation continuada</p>
+        </div>
+        <div style="display: flex !important; align-items: center !important;">
+            <button id="btn-header-login" class="login-btn" onclick="abrirPopup()">Entrar / Cadastrar</button>
+            <div id="area-usuario-logado" style="display: none; align-items: center !important; gap: 15px !important;">
+                <span id="nome-usuario-header" style="color: white !important; font-weight: bold !important; white-space: nowrap !important;"></span>
+                <button class="login-btn" style="background: #dc3545 !important;" onclick="logout()">Sair</button>
+            </div>
+        </div>
+    </div>
 </header>
 
-<section>
-    <div class="bem-vindo-box">
-        <h2>Bem-vindo</h2>
-        <p>Ambiente digital de formação continuada para profissionais da educação.</p>
+<main style="max-width: 1200px !important; width: 100% !important; margin: 40px auto !important; padding: 0 20px !important; box-sizing: border-box !important;">
+    <div class="boas-vindas" style="background: white !important; padding: 30px !important; border-radius: 8px !important; box-shadow: 0 2px 4px rgba(0,0,0,0.05) !important; margin-bottom: 40px !important; text-align: left !important;">
+        <h2 style="margin-top: 0 !important;">Bem-vindo</h2>
+        <p style="margin-bottom: 0 !important;">Ambiente digital de formação continuada para profissionais da educação.</p>
     </div>
 
-    <div class="cursos-grid" id="lista-cursos"></div>
-</section>
+    <div id="lista-cursos" class="cursos-grid" style="display: flex !important; flex-wrap: wrap !important; gap: 20px !important; width: 100% !important;"></div>
+</main>
 
-<footer>
-    <p>Versão 1.0 - Projeto de Estágio</p>
-</footer>
-
-<div id="popup" class="popup" onclick="fecharPopupClickFora(event)">
-    <div class="popup-box">
-        <div class="popup-header" id="popup-titulo">Acessar</div>
+<div id="popup" class="modal" onclick="fecharPopupClickFora(event)" style="display: none; position: fixed !important; top: 0 !important; left: 0 !important; width: 100% !important; height: 100% !important; background: rgba(0,0,0,0.6) !important; z-index: 1000 !important;">
+    <div class="modal-content" style="background: white !important; padding: 30px !important; border-radius: 8px !important; width: 90% !important; max-width: 400px !important; position: relative !important; box-shadow: 0 4px 10px rgba(0,0,0,0.1) !important; box-sizing: border-box !important; margin: 15vh auto !important; text-align: left !important;">
+        <span class="close-btn" onclick="fecharPopup()" style="position: absolute !important; top: 10px !important; right: 15px !important; font-size: 24px !important; cursor: pointer !important; color: #aaa !important;">&times;</span>
+        <h3 id="popup-titulo" style="margin-top: 0 !important; margin-bottom: 20px !important; color: #333 !important;">Acessar</h3>
         
-        <div class="popup-body">
+        <div id="form-login">
+            <input type="text" id="login-id" placeholder="Digite seu CPF" style="width: 100% !important; padding: 10px !important; margin-bottom: 12px !important; border: 1px solid #ccc !important; border-radius: 4px !important; box-sizing: border-box !important;">
+            <div style="position: relative !important; margin-bottom: 15px !important;">
+                <input type="password" id="senha" placeholder="Digite sua senha" style="width: 100% !important; padding: 10px !important; border: 1px solid #ccc !important; border-radius: 4px !important; box-sizing: border-box !important;">
+                <span onclick="toggleSenha('senha')" style="position: absolute !important; right: 10px !important; top: 10px !important; cursor: pointer !important; color: #777 !important; font-size: 14px !important;">👁</span>
+            </div>
+            <div id="msg" style="display: none !important; font-size: 13px !important; margin-bottom: 10px !important;"></div>
+            <button onclick="login()" style="width: 100% !important; background: #007bff !important; color: white !important; border: none !important; padding: 12px !important; border-radius: 4px !important; cursor: pointer !important; font-weight: bold !important; font-size: 16px !important;">Entrar</button>
+            <p style="font-size: 13px !important; color: #666 !important; text-align: center !important; margin-top: 15px !important;">Não tem conta? <a href="#" onclick="mostrarCadastro()" style="color: #007bff !important; text-decoration: none !important; font-weight: bold !important;">Cadastre-se aqui</a></p>
+            <p style="font-size: 12px !important; text-align: center !important; margin-top: 5px !important;"><a href="#" onclick="esqueciSenha()" style="color: #666 !important; text-decoration: none !important;">Esqueceu a senha?</a></p>
+        </div>
+
+        <div id="form-cadastro" style="display: none;">
+            <input type="text" id="cad-nome" placeholder="Nome Completo" style="width: 100% !important; padding: 10px !important; margin-bottom: 12px !important; border: 1px solid #ccc !important; border-radius: 4px !important; box-sizing: border-box !important;">
+            <input type="text" id="cad-cpf" placeholder="CPF (Apenas números)" style="width: 100% !important; padding: 10px !important; margin-bottom: 12px !important; border: 1px solid #ccc !important; border-radius: 4px !important; box-sizing: border-box !important;">
+            <input type="email" id="cad-email" placeholder="E-mail" style="width: 100% !important; padding: 10px !important; margin-bottom: 12px !important; border: 1px solid #ccc !important; border-radius: 4px !important; box-sizing: border-box !important;">
+            <input type="text" id="cad-celular" placeholder="Celular com DDD" style="width: 100% !important; padding: 10px !important; margin-bottom: 12px !important; border: 1px solid #ccc !important; border-radius: 4px !important; box-sizing: border-box !important;">
             
-            <div id="form-login">
-                <div class="input-group">
-                    <input id="login-id" type="text" placeholder="E-mail ou CPF*">
-                </div>
-                <div class="input-group">
-                    <input id="senha" type="password" placeholder="Senha*">
-                    <span class="toggle-password" onclick="toggleSenha('senha')">&#128065;</span>
-                </div>
-                
-                <a href="#" class="forgot-pass" onclick="esqueciSenha()">Esqueci minha senha</a>
-                
-                <button class="btn-entrar" onclick="login()">Entrar</button>
-                <p id="msg"></p>
-                
-                <div class="register-section">
-                    Ainda não é cadastrado? <a href="#" onclick="mostrarCadastro()">Cadastre-se</a>
-                </div>
-            </div>
+            <select id="cad-funcao" style="width: 100% !important; padding: 10px !important; margin-bottom: 12px !important; border: 1px solid #ccc !important; border-radius: 4px !important; box-sizing: border-box !important; background: white !important; color: #333 !important;">
+                <option value="" disabled selected>Selecione sua Função</option>
+                <option value="Professor">Professor</option>
+                <option value="Pedagogo">Pedagogo</option>
+                <option value="Diretor">Diretor</option>
+                <option value="Cuidador">Cuidador</option>
+            </select>
 
-            <div id="form-cadastro" style="display: none;">
-                <div class="input-group">
-                    <input id="cad-login-id" type="text" placeholder="E-mail ou CPF*">
-                </div>
-                <div class="input-group">
-                    <input id="cad-senha" type="password" placeholder="Crie uma senha*">
-                    <span class="toggle-password" onclick="toggleSenha('cad-senha')">&#128065;</span>
-                </div>
-                
-                <button class="btn-entrar" onclick="cadastrar()">Cadastrar</button>
-                <p id="msg-cadastro"></p>
-                
-                <div class="register-section">
-                    Já possui conta? <a href="#" onclick="mostrarLogin()">Faça Login</a>
-                </div>
+            <div style="position: relative !important; margin-bottom: 15px !important;">
+                <input type="password" id="cad-senha" placeholder="Crie uma senha" style="width: 100% !important; padding: 10px !important; border: 1px solid #ccc !important; border-radius: 4px !important; box-sizing: border-box !important;">
+                <span onclick="toggleSenha('cad-senha')" style="position: absolute !important; right: 10px !important; top: 10px !important; cursor: pointer !important; color: #777 !important; font-size: 14px !important;">👁</span>
             </div>
-
+            <div id="msg-cadastro" style="display: none !important; font-size: 13px !important; margin-bottom: 10px !important;"></div>
+            <button onclick="cadastrar()" style="width: 100% !important; background: #28a745 !important; color: white !important; border: none !important; padding: 12px !important; border-radius: 4px !important; cursor: pointer !important; font-weight: bold !important; font-size: 16px !important;">Finalizar Cadastro</button>
+            <p style="font-size: 13px !important; color: #666 !important; text-align: center !important; margin-top: 15px !important;">Já tem cadastro? <a href="#" onclick="mostrarLogin()" style="color: #007bff !important; text-decoration: none !important; font-weight: bold !important;">Faça Login</a></p>
         </div>
     </div>
 </div>
